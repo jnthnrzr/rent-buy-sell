@@ -28,7 +28,7 @@ def add_withdraw(request):
             withdraw = Decimal(request.POST['withdraw'])
             profile.balance -= withdraw
             profile.save()
-        return HttpResponseRedirect(reverse('user'))
+        return HttpResponseRedirect(reverse('add_withdraw'))
     else:
         return render(request, 'add-withdraw.html',
                       {'add_withdraw_form': add_withdraw_form,
