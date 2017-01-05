@@ -1,5 +1,5 @@
-# rent-buy-sell322
-Final Project for CSc322
+# rent-buy-sell
+A boilerplate shopping site to rent, buy, sell products
 
 # Actual app housed in rbs_application
 rbs_app contains all base settings, static files, etc.
