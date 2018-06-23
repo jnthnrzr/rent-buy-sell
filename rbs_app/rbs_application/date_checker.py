@@ -1,6 +1,6 @@
 from .models import *
 from datetime import date,time
-from check_vip import check_vip
+from .check_vip import check_vip
 
 
 def update_all():
