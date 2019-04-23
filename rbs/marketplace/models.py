@@ -8,7 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name='user')
+    user = models.OneToOneField(User, related_name='user',
+                                on_delete=models.CASCADE)
     bio = models.TextField(default='', blank=True)
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
@@ -70,7 +71,7 @@ class Product(models.Model):
         (RENT, 'Rent'),
         (AUCTION, 'Auction'),
     )
-    seller = models.ForeignKey(UserProfile)
+    seller = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     # option: How the product is to be sold
     option = models.CharField(
@@ -99,10 +100,12 @@ class Product(models.Model):
 
 
 class Rating(models.Model):
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     rating = models.IntegerField( blank = True , null= True)
-    rated_by = models.ForeignKey(UserProfile, related_name="rater")
-    product = models.ForeignKey(Product, related_name= 'product')
+    rated_by = models.ForeignKey(UserProfile, related_name="rater",
+                                 on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name= 'product',
+                                on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.rating)
@@ -112,7 +115,7 @@ class Complaint(models.Model):
     # pub_date = models.DateTimeField("Date published", auto_now_add=True)
     # start_date = models.DateField()
     # end_date = models.DateField()
-    user_id = models.ForeignKey(UserProfile)
+    user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     complaint = models.CharField(
         max_length=512,
         null=True,
@@ -125,7 +128,7 @@ class Complaint(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user = models.OneToOneField(UserProfile)
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
     totalPrice = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     # is_current = models.BooleanField(default=True)
@@ -143,7 +146,7 @@ class ShoppingCart(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
     totalPrice = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     # creation_date = models.DateTimeField(_("Ordered on"))
@@ -153,7 +156,7 @@ class Order(models.Model):
 
 
 class Comment(models.Model):
-    product = models.ForeignKey(Product)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
 

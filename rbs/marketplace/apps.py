@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class RbsApplicationConfig(AppConfig):
-    name = 'rbs_application'
+    name = 'marketplace'
