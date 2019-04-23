@@ -4,8 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "==1.10.3"
-Mezzanine = "==4.2.2"
+django = "*"
 
 [dev-packages]
 

@@ -1,16 +1,40 @@
-# rent-buy-sell
-A boilerplate shopping site to rent, buy, sell products
+# Rent-Buy-Sell
 
-# Actual app housed in rbs_application
-rbs_app contains all base settings, static files, etc.
+A boilerplate shopping site to rent, buy, or sell products. Built with Python
+ Django.
 
-# virutalenv setup
-`$ virtualenv venv`  
-`$ source venv/bin/activate`  
-`$ pip install -r requirements.txt`
+## Installation
 
-*To deactivate the virtualenv*  
-`$ deactivate`
+1. Install pipenv globally
 
-# Run server
-`$ python manage.py runserver`
+    ```bash
+    pip install pipenv
+    ```
+
+2. From project root, use pipenv to install project dependencies
+
+    ```bash
+    pipenv install
+    ```
+
+3. Navigate to the Django project root
+
+    ```bash
+    cd rbs/
+    ```
+
+4. Apply migrations to the sqlite database
+
+    ```bash
+    python manage.py migrate
+    ```
+    
+5. Run the Django server
+
+    ```bash
+    python manage.py runserver
+    ```
+
+## License
+
+MIT
